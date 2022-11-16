@@ -4,11 +4,9 @@ import htl.steyr.spring_tests.models.SchoolClass;
 import htl.steyr.spring_tests.models.Student;
 import htl.steyr.spring_tests.models.repositories.SchoolClassRepository;
 import htl.steyr.spring_tests.models.repositories.StudentRepository;
-import org.junit.Test;
 import org.junit.jupiter.api.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -30,8 +28,8 @@ public class StudentRepositoryIntegrationTest {
 
     Student testStudent = null;
 
-    @Test
     @Order(1)
+    @Test
     public void insertStudent() {
         Assertions.assertDoesNotThrow(() -> {
             SchoolClass schoolClass = new SchoolClass("3AHITN");
@@ -42,10 +40,10 @@ public class StudentRepositoryIntegrationTest {
         });
     }
 
-    @Test
     @Order(2)
+    @Test
     public void getStudent() {
-        Student student = studentRepository.findOneStudentByFirstnameAndLastname("Daniel", "Lehrling");
+        Student student = studentRepository.findStudentByFirstnameAndLastname("Daniel", "Lehrling");
         Assertions.assertEquals(testStudent.toString(), student.toString());
     }
 }
