@@ -45,8 +45,8 @@ public class StudentRepositoryIntegrationTest {
     @Test
     @Order(2)
     public void getStudent() {
-        Student student = studentRepository.findAll().get(0);
-
+        Student student = studentRepository.findStudentsByFirstnameAndLastname("Daniel", "Lehrling").get(0);
+        System.out.println(studentRepository.findStudentsByFirstnameAndLastname("Daniel", "Lehrling").size());
         Assertions.assertEquals(testStudent.toString(), student.toString());
     }
 }
