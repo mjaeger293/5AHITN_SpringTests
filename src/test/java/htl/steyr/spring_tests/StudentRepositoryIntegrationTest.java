@@ -15,7 +15,7 @@ import java.util.Date;
 
 @RunWith(SpringRunner.class)
 //@DataJpaTest
-@SpringBootTest
+@SpringBootTest(classes = SpringTestsApplication.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestPropertySource(locations = "classpath:test.properties")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
