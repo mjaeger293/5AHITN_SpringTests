@@ -20,7 +20,6 @@ import java.util.Date;
 //@DataJpaTest
 @SpringBootTest(classes = SpringTestsApplication.class)
 @TestPropertySource(locations = "classpath:test.properties")
-@ImportResource({"classpath*:application-context.xml"})
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class StudentRepositoryIntegrationTest {
