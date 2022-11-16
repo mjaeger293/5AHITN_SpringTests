@@ -1,10 +1,11 @@
 package htl.steyr.spring_tests;
 
+import htl.steyr.spring_tests.models.SchoolClass;
 import htl.steyr.spring_tests.models.Student;
+import htl.steyr.spring_tests.models.repositories.SchoolClassRepository;
 import htl.steyr.spring_tests.models.repositories.StudentRepository;
 import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -19,15 +20,33 @@ import java.util.Date;
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestPropertySource(locations = "classpath:test.properties")
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class StudentRepositoryIntegrationTest {
+    @Autowired
+    SchoolClassRepository schoolClassRepository;
+
     @Autowired
     StudentRepository studentRepository;
 
-    @Test
-    public void findStudentsByFirstnameAndLastnameTest() {
-        Student student = new Student("Fabian", "Höfler", new Date(), null);
-        student = studentRepository.save(student);
+    Student testStudent = null;
 
-        Assertions.assertEquals(student, studentRepository.findById(student.getStudent_id()).get());
+    @Test
+    @Order(1)
+    public void insertStudent() {
+        Assertions.assertDoesNotThrow(() -> {
+            SchoolClass schoolClass = new SchoolClass("3AHITN");
+            testStudent = new Student("Daniel", "Lehrling", new Date(), schoolClass);
+
+            schoolClassRepository.save(schoolClass);
+            studentRepository.save(testStudent);
+        });
+    }
+
+    @Test
+    @Order(2)
+    public void getStudent() {
+        Student student = studentRepository.findAll().get(0);
+
+        Assertions.assertEquals(testStudent.toString(), student.toString());
     }
 }
