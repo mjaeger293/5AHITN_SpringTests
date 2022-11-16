@@ -28,6 +28,6 @@ public class StudentRepositoryIntegrationTest {
         Student student = new Student("Fabian", "Höfler", new Date(), null);
         student = studentRepository.save(student);
 
-        Assertions.assertEquals(student, studentRepository.findById(student.getStudent_id()));
+        Assertions.assertEquals(student, studentRepository.findById(student.getStudent_id()).get());
     }
 }
