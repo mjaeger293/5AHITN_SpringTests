@@ -28,8 +28,8 @@ public class StudentRepositoryIntegrationTest {
 
     Student testStudent = null;
 
-    @Order(1)
     @Test
+    @Order(1)
     public void insertStudent() {
         Assertions.assertDoesNotThrow(() -> {
             SchoolClass schoolClass = new SchoolClass("3AHITN");
@@ -40,8 +40,8 @@ public class StudentRepositoryIntegrationTest {
         });
     }
 
-    @Order(2)
     @Test
+    @Order(2)
     public void getStudent() {
         Student student = studentRepository.findStudentByFirstnameAndLastname("Daniel", "Lehrling");
         Assertions.assertEquals(testStudent.toString(), student.toString());
