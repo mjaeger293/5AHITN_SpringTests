@@ -16,7 +16,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Date;
 
-@ExtendWith(SpringExtension.class)
 //@DataJpaTest
 @SpringBootTest(classes = SpringTestsApplication.class)
 @TestPropertySource(locations = "classpath:test.properties")
@@ -36,17 +35,17 @@ public class StudentRepositoryIntegrationTest {
     public void insertStudent() {
         Assertions.assertDoesNotThrow(() -> {
             SchoolClass schoolClass = new SchoolClass("3AHITN");
-            testStudent = new Student("c", "b", new Date(), schoolClass);
+            testStudent = new Student("Daniel", "Lehrling", new Date(), schoolClass);
 
-            //schoolClassRepository.save(schoolClass);
-            //studentRepository.save(testStudent);
+            schoolClassRepository.save(schoolClass);
+            studentRepository.save(testStudent);
         });
     }
 
     @Test
     @Order(2)
     public void getStudent() {
-        Student student = studentRepository.findStudentByFirstnameAndLastname("c", "b");
+        Student student = studentRepository.findStudentByFirstnameAndLastname("Daniel", "Lehrling");
         Assertions.assertEquals(testStudent.toString(), student.toString());
     }
 }
