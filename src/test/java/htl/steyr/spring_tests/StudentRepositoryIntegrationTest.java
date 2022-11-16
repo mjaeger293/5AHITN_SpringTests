@@ -5,16 +5,22 @@ import htl.steyr.spring_tests.models.Student;
 import htl.steyr.spring_tests.models.repositories.SchoolClassRepository;
 import htl.steyr.spring_tests.models.repositories.StudentRepository;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.ImportResource;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Date;
 
+@ExtendWith(SpringExtension.class)
 //@DataJpaTest
 @SpringBootTest(classes = SpringTestsApplication.class)
 @TestPropertySource(locations = "classpath:test.properties")
+@ImportResource({"classpath*:application-context.xml"})
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class StudentRepositoryIntegrationTest {
