@@ -16,8 +16,8 @@ import java.util.Date;
 @RunWith(SpringRunner.class)
 //@DataJpaTest
 @SpringBootTest(classes = SpringTestsApplication.class)
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestPropertySource(locations = "classpath:test.properties")
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class StudentRepositoryIntegrationTest {
     @Autowired
