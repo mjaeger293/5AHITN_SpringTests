@@ -27,19 +27,6 @@ public class Student {
     @JoinColumn(name = "schoolclass_id")
     private SchoolClass schoolClass;
 
-    // student is owning side
-    // Used in earlier version
-    /*@ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "student_to_exam",
-            joinColumns = @JoinColumn(name = "student_id"),
-            inverseJoinColumns = @JoinColumn(name = "exam_id"))
-    Set<Student> exams;*/
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "student", fetch = FetchType.LAZY)
-    private Set<Grade> grades;
-
     public Student(String firstname, String lastname, Date birthday, SchoolClass schoolClass) {
         this.firstname = firstname;
         this.lastname = lastname;
@@ -90,13 +77,6 @@ public class Student {
         this.schoolClass = schoolClass;
     }
 
-    public Set<Grade> getGrades() {
-        return grades;
-    }
-
-    public void setGrades(Set<Grade> grades) {
-        this.grades = grades;
-    }
 
     @Override
     public String toString() {
